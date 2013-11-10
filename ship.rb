@@ -1,3 +1,5 @@
+Hasu.load 'missile.rb'
+
 class Ship
   WIDTH = 30
   HEIGHT = 20
@@ -32,6 +34,10 @@ class Ship
     if x2 > Game::WIDTH
       @x = Game::WIDTH - WIDTH/2
     end
+  end
+
+  def fire!
+    Missile.new(x, y - HEIGHT)
   end
 
   private

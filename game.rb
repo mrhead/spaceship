@@ -12,6 +12,7 @@ class Game < Hasu::Window
 
   def reset
     @ship = Ship.new
+    @missiles = []
   end
 
   def update
@@ -22,10 +23,22 @@ class Game < Hasu::Window
     if button_down?(Gosu::KbRight)
       @ship.right!
     end
+
+    if button_down?(Gosu::KbSpace)
+      @missiles << @ship.fire!
+    end
+
+    @missiles.each do |missile|
+      missile.move!
+      if missile.y < 0
+        @missiles.delete(missile)
+      end
+    end
   end
 
   def draw
     @ship.draw(self)
+    @missiles.each { |m| m.draw(self) }
   end
 end
 
