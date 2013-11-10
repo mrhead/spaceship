@@ -20,10 +20,18 @@ class Ship
 
   def left!
     @x -= STEP
+
+    if x1 < 0
+      @x = WIDTH/2
+    end
   end
 
   def right!
     @x += STEP
+
+    if x2 > Game::WIDTH
+      @x = Game::WIDTH - WIDTH/2
+    end
   end
 
   private
