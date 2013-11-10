@@ -15,7 +15,13 @@ class Game < Hasu::Window
   end
 
   def update
+    if button_down?(Gosu::KbLeft)
+      @ship.left!
+    end
 
+    if button_down?(Gosu::KbRight)
+      @ship.right!
+    end
   end
 
   def draw
