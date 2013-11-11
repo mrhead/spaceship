@@ -1,5 +1,5 @@
 class Missile
-  WIDTH = 2
+  WIDTH = 4
   HEIGHT = 10
   SPEED = 8
 
