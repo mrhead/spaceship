@@ -15,6 +15,8 @@ class Game < Hasu::Window
     @ship = Ship.new
     @missiles = []
     @enemies = []
+    @score = 0
+    @font = Gosu::Font.new(self, "Arial", 20)
   end
 
   def update
@@ -45,6 +47,7 @@ class Game < Hasu::Window
         if missile.hit?(enemy)
           @enemies.delete(enemy)
           @missiles.delete(missile)
+          @score += 10
         end
       end
     end
@@ -64,6 +67,7 @@ class Game < Hasu::Window
     @ship.draw(self)
     @missiles.each { |m| m.draw(self) }
     @enemies.each { |e| e.draw(self) }
+    @font.draw("Score: #{@score}", WIDTH - 110, 10, 0)
   end
 end
 
