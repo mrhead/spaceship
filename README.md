@@ -22,3 +22,12 @@ cd spaceship
 bundle install
 ruby game.rb
 ```
+
+Controls
+--------
+
+* R/r - restart game
+* left/right arrow - move ship
+* space - fire!
+* left mouse button - fire!
+* mouse - move ship
