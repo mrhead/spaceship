@@ -1,7 +1,7 @@
 Hasu.load 'missile.rb'
 
 class Ship
-  WIDTH = 20 
+  WIDTH = 20
   HEIGHT = 30
   STEP = 6
 
@@ -50,14 +50,14 @@ class Ship
     Missile.new(x, y)
   end
 
+  def y
+    Game::HEIGHT - HEIGHT - 20
+  end
+
   private
 
   def color
     Gosu::Color::WHITE
-  end
-
-  def y
-    Game::HEIGHT - HEIGHT - 20
   end
 
   def x1

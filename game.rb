@@ -17,6 +17,7 @@ class Game < Hasu::Window
     @ship = Ship.new
     @missiles = []
     @enemies = []
+    @bombs = []
     @score = 0
     @font = Gosu::Font.new(self, "Arial", 20)
     @game_over = false
@@ -38,7 +39,10 @@ class Game < Hasu::Window
     move_background
     move_missiles
     move_enemies
+    move_bombs
+    fire_a_bomb
     find_collisions
+
     unless game_over?
       create_new_enemy
     end
@@ -59,6 +63,7 @@ class Game < Hasu::Window
       draw_ship
       draw_missiles
       draw_enemies
+      draw_bombs
     end
   end
 
@@ -83,6 +88,12 @@ class Game < Hasu::Window
     end
   end
 
+  def fire_a_bomb
+    if rand(100) == 0 && @enemies.any?
+      @bombs << @enemies.sample.fire(@ship)
+    end
+  end
+
   def move_enemies
     @enemies.each do |enemy|
       enemy.move!
@@ -95,6 +106,7 @@ class Game < Hasu::Window
   def find_collisions
     missiles_vs_enemies
     ship_vs_enemies
+    ship_vs_bombs
   end
 
   def missiles_vs_enemies
@@ -112,6 +124,14 @@ class Game < Hasu::Window
   def ship_vs_enemies
     @enemies.each do |enemy|
       if @ship.intersect?(enemy)
+        set_game_over
+      end
+    end
+  end
+
+  def ship_vs_bombs
+    @bombs.each do |bomb|
+      if @ship.intersect?(bomb)
         set_game_over
       end
     end
@@ -142,7 +162,7 @@ class Game < Hasu::Window
   end
 
   def create_new_enemy
-    if rand(100) == 0
+    if rand(70) == 0
       @enemies << Enemy.new
     end
   end
@@ -173,6 +193,23 @@ class Game < Hasu::Window
 
   def game_over?
     @game_over
+  end
+
+  def move_bombs
+    @bombs.each do |bomb|
+      bomb.move
+      if bomb.out_of_screen?
+        delete_bomb(bomb)
+      end
+    end
+  end
+
+  def delete_bomb(bomb)
+    @bombs.delete(bomb)
+  end
+
+  def draw_bombs
+    @bombs.each { |bomb| bomb.draw(self) }
   end
 end
 

@@ -1,6 +1,8 @@
+Hasu.load 'bomb.rb'
+
 class Enemy
-  WIDTH = 20
-  HEIGHT = 20
+  WIDTH = 25
+  HEIGHT = 25
   SPEED = 2
 
   attr_reader :x, :y
@@ -23,6 +25,14 @@ class Enemy
       x2, y2, color,
       x2, y1, color
     )
+  end
+
+  def fire(ship)
+    Bomb.new(x, y, bomb_angle(ship))
+  end
+
+  def bomb_angle(ship)
+    Gosu.angle(x, y, ship.x, ship.y)
   end
 
   def out_of_screen?
