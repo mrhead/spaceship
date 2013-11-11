@@ -1,7 +1,7 @@
 class Enemy
   WIDTH = 20
   HEIGHT = 20
-  SPEED = 5
+  SPEED = 2
 
   attr_reader :x, :y
 
