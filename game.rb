@@ -40,6 +40,15 @@ class Game < Hasu::Window
       end
     end
 
+    @missiles.each do |missile|
+      @enemies.each do |enemy|
+        if missile.hit?(enemy)
+          @enemies.delete(enemy)
+          @missiles.delete(missile)
+        end
+      end
+    end
+
     if rand(100) == 0
       @enemies << Enemy.new
     end

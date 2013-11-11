@@ -29,8 +29,6 @@ class Enemy
     y > Game::HEIGHT
   end
 
-  private
-
   def x1
     x - WIDTH/2
   end

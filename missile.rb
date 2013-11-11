@@ -29,6 +29,13 @@ class Missile
     y < -HEIGHT
   end
 
+  def hit?(enemy)
+    x1 < enemy.x2 &&
+      x2 > enemy.x1 &&
+      y1 - SPEED < enemy.y2 &&
+      y2 > enemy.y1
+  end
+
   private
 
   def x1
