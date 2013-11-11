@@ -24,7 +24,7 @@ class Ship
     @x -= STEP
 
     if x1 < 0
-      @x = WIDTH/2
+      @x = 0
     end
   end
 
@@ -32,7 +32,7 @@ class Ship
     @x += STEP
 
     if x2 > Game::WIDTH
-      @x = Game::WIDTH - WIDTH/2
+      @x = Game::WIDTH
     end
   end
 
