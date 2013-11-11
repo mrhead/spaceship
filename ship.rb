@@ -20,6 +20,13 @@ class Ship
     )
   end
 
+  def intersect?(enemy)
+    x1 < enemy.x2 &&
+      x2 > enemy.x1 &&
+      y1 < enemy.y2 &&
+      y2 > enemy.y1
+  end
+
   def left!
     @x -= STEP
 
@@ -51,7 +58,7 @@ class Ship
   end
 
   def y
-    Game::HEIGHT - 10
+    Game::HEIGHT - HEIGHT - 10
   end
 
   def x1
@@ -67,6 +74,6 @@ class Ship
   end
 
   def y2
-    y - HEIGHT
+    y + HEIGHT
   end
 end

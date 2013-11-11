@@ -19,10 +19,10 @@ class Game < Hasu::Window
     @enemies = []
     @score = 0
     @font = Gosu::Font.new(self, "Arial", 20)
+    @game_over = false
   end
 
   def update
-
     if button_down?(Gosu::KbLeft)
       @ship.left!
     end
@@ -39,7 +39,9 @@ class Game < Hasu::Window
     move_missiles
     move_enemies
     find_collisions
-    create_new_enemy
+    unless game_over?
+      create_new_enemy
+    end
   end
 
   def button_down(key)
@@ -50,10 +52,14 @@ class Game < Hasu::Window
 
   def draw
     draw_background
-    draw_ship
-    draw_missiles
-    draw_enemies
     draw_score
+    if game_over?
+      write_game_over_text
+    else
+      draw_ship
+      draw_missiles
+      draw_enemies
+    end
   end
 
   private
@@ -87,6 +93,11 @@ class Game < Hasu::Window
   end
 
   def find_collisions
+    missiles_vs_enemies
+    ship_vs_enemies
+  end
+
+  def missiles_vs_enemies
     @missiles.each do |missile|
       @enemies.each do |enemy|
         if missile.hit?(enemy)
@@ -98,12 +109,36 @@ class Game < Hasu::Window
     end
   end
 
+  def ship_vs_enemies
+    @enemies.each do |enemy|
+      if @ship.intersect?(enemy)
+        set_game_over
+      end
+    end
+  end
+
   def delete_enemy(enemy)
     @enemies.delete(enemy)
   end
 
   def delete_missile(missile)
     @missiles.delete(missile)
+  end
+
+  def set_game_over
+    @game_over = true
+  end
+
+  def write_game_over_text
+    @font.draw(game_over_text, WIDTH/2 - text_width(game_over_text)/2, HEIGHT/2 - 100, 0)
+  end
+
+  def game_over_text
+    'GAME OVER'
+  end
+
+  def text_width(text)
+    @font.text_width(text)
   end
 
   def create_new_enemy
@@ -134,6 +169,10 @@ class Game < Hasu::Window
 
   def draw_score
     @font.draw("Score: #{@score}", WIDTH - 110, 10, 0)
+  end
+
+  def game_over?
+    @game_over
   end
 end
 
