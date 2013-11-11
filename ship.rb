@@ -36,6 +36,10 @@ class Ship
     end
   end
 
+  def set_x(x)
+    @x = x
+  end
+
   def fire!
     Missile.new(x, y - HEIGHT)
   end

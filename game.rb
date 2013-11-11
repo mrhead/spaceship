@@ -32,6 +32,11 @@ class Game < Hasu::Window
       @ship.right!
     end
 
+    if mouse_x != @prev_mouse_x
+      @ship.set_x(mouse_x)
+    end
+    @prev_mouse_x = mouse_x
+
     @missiles.each do |missile|
       missile.move!
       if missile.out_of_screen?
@@ -62,7 +67,7 @@ class Game < Hasu::Window
   end
 
   def button_down(key)
-    if key == Gosu::KbSpace
+    if key == Gosu::KbSpace or key == Gosu::MsLeft
       @missiles << @ship.fire!
     end
   end
