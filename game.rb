@@ -2,6 +2,7 @@ require 'hasu'
 
 Hasu.load 'ship.rb'
 Hasu.load 'enemy.rb'
+Hasu.load 'background.rb'
 
 class Game < Hasu::Window
   WIDTH = 480
@@ -12,6 +13,7 @@ class Game < Hasu::Window
   end
 
   def reset
+    @background = Background.new
     @ship = Ship.new
     @missiles = []
     @enemies = []
@@ -20,6 +22,8 @@ class Game < Hasu::Window
   end
 
   def update
+    @background.move!
+
     if button_down?(Gosu::KbLeft)
       @ship.left!
     end
@@ -64,6 +68,7 @@ class Game < Hasu::Window
   end
 
   def draw
+    @background.draw(self)
     @ship.draw(self)
     @missiles.each { |m| m.draw(self) }
     @enemies.each { |e| e.draw(self) }
