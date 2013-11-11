@@ -1,8 +1,8 @@
 Hasu.load 'missile.rb'
 
 class Ship
-  WIDTH = 30
-  HEIGHT = 20
+  WIDTH = 20 
+  HEIGHT = 30
   STEP = 6
 
   attr_reader :x
@@ -12,11 +12,10 @@ class Ship
   end
 
   def draw(window)
-    window.draw_quad(
-      x1, y1, color,
+    window.draw_triangle(
       x1, y2, color,
-      x2, y2, color,
-      x2, y1, color
+      x, y1, color,
+      x2, y2, color
     )
   end
 
@@ -48,7 +47,7 @@ class Ship
   end
 
   def fire!
-    Missile.new(x, y - HEIGHT)
+    Missile.new(x, y)
   end
 
   private
@@ -58,7 +57,7 @@ class Ship
   end
 
   def y
-    Game::HEIGHT - HEIGHT - 10
+    Game::HEIGHT - HEIGHT - 20
   end
 
   def x1
