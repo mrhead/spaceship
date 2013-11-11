@@ -1,6 +1,7 @@
 require 'hasu'
 
 Hasu.load 'ship.rb'
+Hasu.load 'enemy.rb'
 
 class Game < Hasu::Window
   WIDTH = 480
@@ -13,6 +14,7 @@ class Game < Hasu::Window
   def reset
     @ship = Ship.new
     @missiles = []
+    @enemies = []
   end
 
   def update
@@ -30,6 +32,17 @@ class Game < Hasu::Window
         @missiles.delete(missile)
       end
     end
+
+    @enemies.each do |enemy|
+      enemy.move!
+      if enemy.out_of_screen?
+        @enemies.delete(enemy)
+      end
+    end
+
+    if rand(100) == 0
+      @enemies << Enemy.new
+    end
   end
 
   def button_down(key)
@@ -41,6 +54,7 @@ class Game < Hasu::Window
   def draw
     @ship.draw(self)
     @missiles.each { |m| m.draw(self) }
+    @enemies.each { |e| e.draw(self) }
   end
 end
 
