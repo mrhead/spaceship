@@ -3,6 +3,8 @@ spaceship
 
 Very simple arcade game built with Gosu (Ruby).
 
+![spaceship](screenshot.png)
+
 Built with
 ----------
 
