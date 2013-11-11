@@ -25,6 +25,10 @@ class Missile
     )
   end
 
+  def out_of_screen?
+    y < -HEIGHT
+  end
+
   private
 
   def x1

@@ -30,7 +30,7 @@ class Game < Hasu::Window
 
     @missiles.each do |missile|
       missile.move!
-      if missile.y < 0
+      if missile.out_of_screen?
         @missiles.delete(missile)
       end
     end
