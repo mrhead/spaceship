@@ -179,11 +179,19 @@ class Game < Hasu::Window
   end
 
   def draw_missiles
-    @missiles.each { |m| m.draw(self) }
+    draw_collection(@missiles)
   end
 
   def draw_enemies
-    @enemies.each { |e| e.draw(self) }
+    draw_collection(@enemies)
+  end
+
+  def draw_bombs
+    draw_collection(@bombs)
+  end
+
+  def draw_collection(collection)
+    collection.each { |obj| obj.draw(self) }
   end
 
   def draw_score
@@ -202,9 +210,6 @@ class Game < Hasu::Window
     @bombs.delete(bomb)
   end
 
-  def draw_bombs
-    @bombs.each { |bomb| bomb.draw(self) }
-  end
 end
 
 Game.run
