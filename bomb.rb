@@ -17,14 +17,6 @@ class Bomb < QuadObject
     move
   end
 
-  def width
-    WIDTH
-  end
-
-  def height
-    HEIGHT
-  end
-
   private
 
   def move
@@ -34,5 +26,13 @@ class Bomb < QuadObject
 
   def color
     Gosu::Color::YELLOW
+  end
+
+  def width
+    WIDTH
+  end
+
+  def height
+    HEIGHT
   end
 end
