@@ -17,12 +17,8 @@ class Enemy < QuadObject
     move
   end
 
-  def fire(ship)
-    Bomb.new(x, y, bomb_angle(ship))
-  end
-
-  def bomb_angle(ship)
-    Gosu.angle(x, y, ship.x, ship.y)
+  def fire(target)
+    Bomb.new(x, y, bomb_angle(target))
   end
 
   def out_of_screen?
@@ -45,5 +41,9 @@ class Enemy < QuadObject
 
   def height
     HEIGHT
+  end
+
+  def bomb_angle(target)
+    Gosu.angle(x, y, target.x, target.y)
   end
 end
