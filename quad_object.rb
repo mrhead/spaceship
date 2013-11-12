@@ -24,6 +24,12 @@ class QuadObject
     y + height/2
   end
 
+  def out_of_screen?
+    raise NotImplementedError
+  end
+
+  protected
+
   def color
     Gosu::Color::WHITE
   end
@@ -33,10 +39,6 @@ class QuadObject
   end
 
   def height
-    raise NotImplementedError
-  end
-
-  def out_of_screen?
     raise NotImplementedError
   end
 end

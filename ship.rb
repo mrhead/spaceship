@@ -52,28 +52,20 @@ class Ship < QuadObject
   end
 
   def y
-    Game::HEIGHT - HEIGHT - 20
+    Game::HEIGHT - height
   end
 
   private
 
+  def width
+    WIDTH
+  end
+
+  def height
+    HEIGHT
+  end
+
   def color
     Gosu::Color::WHITE
-  end
-
-  def x1
-    x - WIDTH/2
-  end
-
-  def x2
-    x + WIDTH/2
-  end
-
-  def y1
-    y
-  end
-
-  def y2
-    y + HEIGHT
   end
 end

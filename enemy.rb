@@ -29,14 +29,6 @@ class Enemy < QuadObject
     y > Game::HEIGHT
   end
 
-  def width
-    WIDTH
-  end
-
-  def height
-    HEIGHT
-  end
-
   private
 
   def move
@@ -45,5 +37,13 @@ class Enemy < QuadObject
 
   def color
     Gosu::Color::RED
+  end
+
+  def width
+    WIDTH
+  end
+
+  def height
+    HEIGHT
   end
 end
