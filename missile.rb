@@ -54,8 +54,9 @@ class Missile
     y
   end
 
+  private
+
   def move
     @y -= SPEED
   end
-
 end
