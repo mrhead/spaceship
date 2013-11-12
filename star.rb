@@ -10,7 +10,7 @@ class Star
   end
 
   def update
-    @y += speed
+    move
     if y > Game::HEIGHT
       @y = - rand(20)
       @x = rand_x
@@ -34,5 +34,9 @@ class Star
 
   def rand_y
     rand(Game::HEIGHT)
+  end
+
+  def move
+    @y += speed
   end
 end
