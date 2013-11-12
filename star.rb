@@ -9,7 +9,7 @@ class Star
     @size = rand(2) + 1
   end
 
-  def move!
+  def update
     @y += speed
     if y > Game::HEIGHT
       @y = - rand(20)

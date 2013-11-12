@@ -12,11 +12,17 @@ class Background
     end
   end
 
-  def move!
-    stars.each(&:move!)
+  def update
+    update_stars
   end
 
   def draw(window)
     stars.each { |star| star.draw(window) }
+  end
+
+  private
+
+  def update_stars
+    stars.each(&:update)
   end
 end

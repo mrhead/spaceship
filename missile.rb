@@ -10,8 +10,8 @@ class Missile
     @y = y
   end
 
-  def move!
-    @y -= SPEED
+  def update
+    move
   end
 
   def draw(window)
@@ -53,4 +53,9 @@ class Missile
   def y2
     y
   end
+
+  def move
+    @y -= SPEED
+  end
+
 end

@@ -11,6 +11,10 @@ class Bomb
     @angle = angle
   end
 
+  def update
+    move
+  end
+
   def move
     @x += Gosu.offset_x(angle, SPEED)
     @y += Gosu.offset_y(angle, SPEED)

@@ -36,10 +36,10 @@ class Game < Hasu::Window
       @ship.set_x(mouse_x)
     end
 
-    move_background
-    move_missiles
-    move_enemies
-    move_bombs
+    update_background
+    update_missiles
+    update_enemies
+    update_bombs
     fire_a_bomb
     find_collisions
 
@@ -75,13 +75,13 @@ class Game < Hasu::Window
     @prev_mouse_x = mouse_x
   end
 
-  def move_background
-    @background.move!
+  def update_background
+    @background.update
   end
 
-  def move_missiles
+  def update_missiles
     @missiles.each do |missile|
-      missile.move!
+      missile.update
       if missile.out_of_screen?
         @missiles.delete(missile)
       end
@@ -94,9 +94,9 @@ class Game < Hasu::Window
     end
   end
 
-  def move_enemies
+  def update_enemies
     @enemies.each do |enemy|
-      enemy.move!
+      enemy.update
       if enemy.out_of_screen?
         @enemies.delete(enemy)
       end
@@ -195,9 +195,9 @@ class Game < Hasu::Window
     @game_over
   end
 
-  def move_bombs
+  def update_bombs
     @bombs.each do |bomb|
-      bomb.move
+      bomb.update
       if bomb.out_of_screen?
         delete_bomb(bomb)
       end
