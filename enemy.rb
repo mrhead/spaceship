@@ -17,14 +17,16 @@ class Enemy
   end
 
   def draw(window)
-    color = Gosu::Color::RED
-
     window.draw_quad(
       x1, y1, color,
       x1, y2, color,
       x2, y2, color,
       x2, y1, color
     )
+  end
+
+  def color
+    Gosu::Color::RED
   end
 
   def fire(ship)
@@ -48,11 +50,11 @@ class Enemy
   end
 
   def y1
-    y
+    y - HEIGHT/2
   end
 
   def y2
-    y + HEIGHT
+    y + HEIGHT/2
   end
 
   private
@@ -60,5 +62,4 @@ class Enemy
   def move
     @y += SPEED
   end
-
 end
