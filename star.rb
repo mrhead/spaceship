@@ -22,18 +22,6 @@ class Star < QuadObject
     y1 > Game::HEIGHT
   end
 
-  def width
-    size
-  end
-
-  def height
-    size
-  end
-
-  def size
-    @size.to_f
-  end
-
   private
 
   def rand_x
@@ -51,5 +39,17 @@ class Star < QuadObject
   def set_new_position
     @y = - rand(20)
     @x = rand_x
+  end
+
+  def width
+    size
+  end
+
+  def height
+    size
+  end
+
+  def size
+    @size.to_f
   end
 end
