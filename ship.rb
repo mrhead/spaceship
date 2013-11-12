@@ -1,6 +1,7 @@
 Hasu.load 'missile.rb'
+Hasu.load 'quad_object.rb'
 
-class Ship
+class Ship < QuadObject
   WIDTH = 20
   HEIGHT = 30
   STEP = 6

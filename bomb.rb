@@ -1,4 +1,6 @@
-class Bomb
+Hasu.load 'quad_object.rb'
+
+class Bomb < QuadObject
   WIDTH = 4
   HEIGHT = 4
   SPEED = 2
@@ -15,22 +17,6 @@ class Bomb
     move
   end
 
-  def move
-    @x += Gosu.offset_x(angle, SPEED)
-    @y += Gosu.offset_y(angle, SPEED)
-  end
-
-  def draw(window)
-    color = Gosu::Color::YELLOW
-
-    window.draw_quad(
-      x1, y1, color,
-      x1, y2, color,
-      x2, y2, color,
-      x2, y1, color
-    )
-  end
-
   def out_of_screen?
     x < 0 ||
       x > Game::WIDTH ||
@@ -38,19 +24,22 @@ class Bomb
       y > Game::HEIGHT
   end
 
-  def x1
-    x - WIDTH/2
+  def width
+    WIDTH
   end
 
-  def x2
-    x + WIDTH/2
+  def height
+    HEIGHT
   end
 
-  def y1
-    y - HEIGHT/2
+  private
+
+  def move
+    @x += Gosu.offset_x(angle, SPEED)
+    @y += Gosu.offset_y(angle, SPEED)
   end
 
-  def y2
-    y + HEIGHT/2
+  def color
+    Gosu::Color::YELLOW
   end
 end

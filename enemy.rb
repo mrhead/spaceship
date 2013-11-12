@@ -1,6 +1,7 @@
 Hasu.load 'bomb.rb'
+Hasu.load 'quad_object.rb'
 
-class Enemy
+class Enemy < QuadObject
   WIDTH = 25
   HEIGHT = 25
   SPEED = 2
@@ -16,19 +17,6 @@ class Enemy
     move
   end
 
-  def draw(window)
-    window.draw_quad(
-      x1, y1, color,
-      x1, y2, color,
-      x2, y2, color,
-      x2, y1, color
-    )
-  end
-
-  def color
-    Gosu::Color::RED
-  end
-
   def fire(ship)
     Bomb.new(x, y, bomb_angle(ship))
   end
@@ -41,25 +29,21 @@ class Enemy
     y > Game::HEIGHT
   end
 
-  def x1
-    x - WIDTH/2
+  def width
+    WIDTH
   end
 
-  def x2
-    x + WIDTH/2
-  end
-
-  def y1
-    y - HEIGHT/2
-  end
-
-  def y2
-    y + HEIGHT/2
+  def height
+    HEIGHT
   end
 
   private
 
   def move
     @y += SPEED
+  end
+
+  def color
+    Gosu::Color::RED
   end
 end

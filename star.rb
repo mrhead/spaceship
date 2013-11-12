@@ -1,4 +1,6 @@
-class Star
+Hasu.load 'quad_object.rb'
+
+class Star < QuadObject
   attr_reader :x, :y, :color, :speed, :size
 
   def initialize
@@ -16,33 +18,16 @@ class Star
     end
   end
 
-  def draw(window)
-    window.draw_quad(
-      x1, y1, color,
-      x1, y2, color,
-      x2, y2, color,
-      x2, y1, color
-    )
-  end
-
   def out_of_screen?
     y1 > Game::HEIGHT
   end
 
-  def x1
-    x - size/2
+  def width
+    size
   end
 
-  def x2
-    x + size/2
-  end
-
-  def y1
-    y - size/2
-  end
-
-  def y2
-    y + size/2
+  def height
+    size
   end
 
   def size

@@ -1,4 +1,6 @@
-class Missile
+Hasu.load 'quad_object.rb'
+
+class Missile < QuadObject
   WIDTH = 4
   HEIGHT = 10
   SPEED = 8
@@ -14,17 +16,6 @@ class Missile
     move
   end
 
-  def draw(window)
-    color = Gosu::Color::YELLOW
-
-    window.draw_quad(
-      x1, y1, color,
-      x1, y2, color,
-      x2, y2, color,
-      x2, y1, color
-    )
-  end
-
   def out_of_screen?
     y < -HEIGHT
   end
@@ -36,27 +27,21 @@ class Missile
       y2 > enemy.y1
   end
 
-  private
-
-  def x1
-    x - WIDTH/2
+  def width
+    WIDTH
   end
 
-  def x2
-    x + WIDTH/2
-  end
-
-  def y1
-    y - HEIGHT/2
-  end
-
-  def y2
-    y + HEIGHT/2
+  def height
+    HEIGHT
   end
 
   private
 
   def move
     @y -= SPEED
+  end
+
+  def color
+    Gosu::Color::YELLOW
   end
 end
