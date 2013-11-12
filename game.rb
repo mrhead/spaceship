@@ -80,10 +80,14 @@ class Game < Hasu::Window
   end
 
   def update_missiles
-    @missiles.each do |missile|
-      missile.update
-      if missile.out_of_screen?
-        @missiles.delete(missile)
+    update_collection(@missiles)
+  end
+
+  def update_collection(collection)
+    collection.each do |object|
+      object.update
+      if object.out_of_screen?
+        collection.delete(object)
       end
     end
   end
@@ -95,12 +99,7 @@ class Game < Hasu::Window
   end
 
   def update_enemies
-    @enemies.each do |enemy|
-      enemy.update
-      if enemy.out_of_screen?
-        @enemies.delete(enemy)
-      end
-    end
+    update_collection(@enemies)
   end
 
   def find_collisions
@@ -196,12 +195,7 @@ class Game < Hasu::Window
   end
 
   def update_bombs
-    @bombs.each do |bomb|
-      bomb.update
-      if bomb.out_of_screen?
-        delete_bomb(bomb)
-      end
-    end
+    update_collection(@bombs)
   end
 
   def delete_bomb(bomb)
