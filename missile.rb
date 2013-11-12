@@ -16,10 +16,6 @@ class Missile < QuadObject
     move
   end
 
-  def out_of_screen?
-    y < -HEIGHT
-  end
-
   def hit?(enemy)
     x1 < enemy.x2 &&
       x2 > enemy.x1 &&

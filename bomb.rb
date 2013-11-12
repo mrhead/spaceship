@@ -17,13 +17,6 @@ class Bomb < QuadObject
     move
   end
 
-  def out_of_screen?
-    x < 0 ||
-      x > Game::WIDTH ||
-      y < 0 ||
-      y > Game::HEIGHT
-  end
-
   def width
     WIDTH
   end

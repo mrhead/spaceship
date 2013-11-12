@@ -25,7 +25,10 @@ class QuadObject
   end
 
   def out_of_screen?
-    raise NotImplementedError
+    x2 < 0 ||
+      x1 > Game::WIDTH ||
+      y2 < 0 ||
+      y1 > Game::HEIGHT
   end
 
   protected
