@@ -23,14 +23,6 @@ class Missile < QuadObject
       y2 > enemy.y1
   end
 
-  def width
-    WIDTH
-  end
-
-  def height
-    HEIGHT
-  end
-
   private
 
   def move
@@ -39,5 +31,13 @@ class Missile < QuadObject
 
   def color
     Gosu::Color::YELLOW
+  end
+
+  def width
+    WIDTH
+  end
+
+  def height
+    HEIGHT
   end
 end
