@@ -31,10 +31,3 @@ Controls
 * space - fire!
 * left mouse button - fire!
 * mouse - move ship
-
-Comments
---------
-
-This is my only not tested Ruby code and I am not proud of it. When I started writing this game I had no idea how to do it and test it.
-
-However now, after some refactoring I can see some code which could (and should) be tested. If I am going to write any other game, then I am going follow TDD. At least for testable objects.
