@@ -10,6 +10,7 @@ class Game < Hasu::Window
 
   def initialize
     super(WIDTH, HEIGHT, false)
+    @high_score = 0
   end
 
   def reset
@@ -19,7 +20,7 @@ class Game < Hasu::Window
     @enemies = []
     @bombs = []
     @score = 0
-    @font = Gosu::Font.new(self, "Arial", 20)
+    @font = Gosu::Font.new(self, "Arial", 15)
     @game_over = false
   end
 
@@ -56,7 +57,6 @@ class Game < Hasu::Window
 
   def draw
     draw_background
-    draw_score
     if game_over?
       write_game_over_text
     else
@@ -65,6 +65,7 @@ class Game < Hasu::Window
       draw_enemies
       draw_bombs
     end
+    draw_score
   end
 
   private
@@ -168,6 +169,7 @@ class Game < Hasu::Window
 
   def add_score(points)
     @score += points
+    @high_score = @score if @score > @high_score
   end
 
   def draw_background
@@ -195,7 +197,8 @@ class Game < Hasu::Window
   end
 
   def draw_score
-    @font.draw("Score: #{@score}", WIDTH - 110, 10, 0)
+    @font.draw("Score: #{@score}", 10, 10, 0)
+    @font.draw("High score: #{@high_score}", WIDTH - 120, 10, 0)
   end
 
   def game_over?
