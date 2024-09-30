@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    gosu (0.15.2)
-    hasu (0.1.4)
+    gosu (1.4.6)
+    hasu (0.1.7)
       gosu
 
 PLATFORMS
@@ -12,4 +12,4 @@ DEPENDENCIES
   hasu
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
