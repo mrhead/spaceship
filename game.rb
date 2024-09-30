@@ -105,6 +105,7 @@ class Game < Hasu::Window
 
   def find_collisions
     missiles_vs_enemies
+    missiles_vs_bombs
     ship_vs_enemies
     ship_vs_bombs
   end
@@ -114,6 +115,18 @@ class Game < Hasu::Window
       @enemies.each do |enemy|
         if missile.hit?(enemy)
           delete_enemy(enemy)
+          delete_missile(missile)
+          add_score(10)
+        end
+      end
+    end
+  end
+
+  def missiles_vs_bombs
+    @missiles.each do |missile|
+      @bombs.each do |bomb|
+        if missile.hit?(bomb)
+          delete_bomb(bomb)
           delete_missile(missile)
           add_score(10)
         end
@@ -139,6 +152,10 @@ class Game < Hasu::Window
 
   def delete_enemy(enemy)
     @enemies.delete(enemy)
+  end
+
+  def delete_bomb(bomb)
+    @bombs.delete(bomb)
   end
 
   def delete_missile(missile)
@@ -212,7 +229,6 @@ class Game < Hasu::Window
   def delete_bomb(bomb)
     @bombs.delete(bomb)
   end
-
 end
 
 Game.run
